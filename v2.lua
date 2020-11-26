@@ -39,7 +39,7 @@ function library:CreateWindow(text)
     gamename.Font = Enum.Font.SourceSans
     gamename.TextColor3 = Color3.fromRGB(255, 255, 255)
     gamename.TextSize = 21.000
-    gamename.Text = text or "New Window"
+    gamename.Text = text
     
     tabtoggle.Name = "tabtoggle"
     tabtoggle.Parent = Main
@@ -134,7 +134,7 @@ function library:CreateWindow(text)
     local function AECJVRV_fake_script() -- ScreenGui.KeyToggleGUI 
         local script = Instance.new('LocalScript', Main)
     
-        local frame = script.Parent
+        local frame = Main
         local hotkey = Enum.KeyCode.RightShift
         local UIS = game:GetService("UserInputService")
         local open = false
