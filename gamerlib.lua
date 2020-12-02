@@ -5,32 +5,32 @@ local function randomName()
     end
     return data
 end
+local UIS = game:GetService("UserInputService")
 function dragify(Frame)
     dragToggle = nil
-    dragSpeed = 0 -- You can edit this.
+    local dragSpeed = 0
     dragInput = nil
     dragStart = nil
-    dragPos = nil
-
+    local dragPos = nil
     function updateInput(input)
-        Delta = input.Position - dragStart
-        Position =
+        local Delta = input.Position - dragStart
+        local Position =
             UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
-        game:GetService("TweenService"):Create(Frame, TweenInfo.new(.25), {Position = Position}):Play()
+        game:GetService("TweenService"):Create(Frame, TweenInfo.new(0.1), {Position = Position}):Play()
     end
-
     Frame.InputBegan:Connect(
         function(input)
             if
                 (input.UserInputType == Enum.UserInputType.MouseButton1 or
-                    input.UserInputType == Enum.UserInputType.Touch)
+                    input.UserInputType == Enum.UserInputType.Touch) and
+                    UIS:GetFocusedTextBox() == nil
              then
                 dragToggle = true
                 dragStart = input.Position
                 startPos = Frame.Position
                 input.Changed:Connect(
                     function()
-                        if (input.UserInputState == Enum.UserInputState.End) then
+                        if input.UserInputState == Enum.UserInputState.End then
                             dragToggle = false
                         end
                     end
@@ -38,42 +38,24 @@ function dragify(Frame)
             end
         end
     )
-
     Frame.InputChanged:Connect(
         function(input)
             if
-                (input.UserInputType == Enum.UserInputType.MouseMovement or
-                    input.UserInputType == Enum.UserInputType.Touch)
+                input.UserInputType == Enum.UserInputType.MouseMovement or
+                    input.UserInputType == Enum.UserInputType.Touch
              then
                 dragInput = input
             end
         end
     )
-
     game:GetService("UserInputService").InputChanged:Connect(
         function(input)
-            if (input == dragInput and dragToggle) then
+            if input == dragInput and dragToggle then
                 updateInput(input)
             end
         end
     )
 end
-local UIS = game:GetService("UserInputService")
-local open = false
-
-UIS.InputBegan:Connect(
-    function(key, gp)
-        if key.KeyCode == Enum.KeyCode.RightShift then
-            if open == false then
-                open = true
-                Main.Visible = false
-            elseif open == true then
-                open = false
-                Main.Visible = true
-            end
-        end
-    end
-)
 local library = {}
 function library:CreateWindow(text)
     local cock = Instance.new("ScreenGui")
