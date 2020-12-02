@@ -96,6 +96,7 @@ function library:CreateWindow(text)
     Main.BorderSizePixel = 0
     Main.Position = UDim2.new(0.161596954, 0, 0.161721066, 0)
     Main.Size = UDim2.new(0, 332, 0, 219)
+    Main.Active = true
     dragify(Main)
 
     line.Name = "line"
