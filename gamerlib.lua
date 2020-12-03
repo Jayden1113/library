@@ -14,47 +14,31 @@ function dragify(Frame)
     local dragPos = nil
     function updateInput(input)
         local Delta = input.Position - dragStart
-        local Position =
-            UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+        local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
         game:GetService("TweenService"):Create(Frame, TweenInfo.new(0.1), {Position = Position}):Play()
     end
-    Frame.InputBegan:Connect(
-        function(input)
-            if
-                (input.UserInputType == Enum.UserInputType.MouseButton1 or
-                    input.UserInputType == Enum.UserInputType.Touch) and
-                    UIS:GetFocusedTextBox() == nil
-             then
-                dragToggle = true
-                dragStart = input.Position
-                startPos = Frame.Position
-                input.Changed:Connect(
-                    function()
-                        if input.UserInputState == Enum.UserInputState.End then
-                            dragToggle = false
-                        end
-                    end
-                )
-            end
+    Frame.InputBegan:Connect(function(input)
+        if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
+            dragToggle = true
+            dragStart = input.Position
+            startPos = Frame.Position
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    dragToggle = false
+                end
+            end)
         end
-    )
-    Frame.InputChanged:Connect(
-        function(input)
-            if
-                input.UserInputType == Enum.UserInputType.MouseMovement or
-                    input.UserInputType == Enum.UserInputType.Touch
-             then
-                dragInput = input
-            end
+    end)
+    Frame.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+            dragInput = input
         end
-    )
-    game:GetService("UserInputService").InputChanged:Connect(
-        function(input)
-            if input == dragInput and dragToggle then
-                updateInput(input)
-            end
+    end)
+    game:GetService("UserInputService").InputChanged:Connect(function(input)
+        if input == dragInput and dragToggle then
+            updateInput(input)
         end
-    )
+    end)
 end
 local library = {}
 function library:CreateWindow(text)
@@ -148,7 +132,19 @@ function library:CreateWindow(text)
             end
         end
     )
-
+    
+    open = false
+    UIS.InputBegan:Connect(function(key, gp)
+        if key.KeyCode == Enum.KeyCode.RightShift then
+            if open == false then
+                open = true
+                Main.Visible = false
+            elseif open == true then
+                open = false
+                Main.Visible = true
+            end
+        end
+    end)
     local asd = {}
 
     function asd:CreateTab(title, visible)
@@ -198,9 +194,9 @@ function library:CreateWindow(text)
 
         UIGradient.Color =
             ColorSequence.new {
-            ColorSequenceKeypoint.new(0.00, Color3.fromRGB(45, 45, 45)),
-            ColorSequenceKeypoint.new(1.00, Color3.fromRGB(45, 45, 45))
-        }
+                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(45, 45, 45)),
+                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(45, 45, 45))
+            }
         UIGradient.Parent = tabbutton
 
         tabtext.Name = "tabtext"
@@ -242,9 +238,9 @@ function library:CreateWindow(text)
 
             UIGradient.Color =
                 ColorSequence.new {
-                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(45, 45, 45)),
-                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(45, 45, 45))
-            }
+                    ColorSequenceKeypoint.new(0.00, Color3.fromRGB(45, 45, 45)),
+                    ColorSequenceKeypoint.new(1.00, Color3.fromRGB(45, 45, 45))
+                }
             UIGradient.Parent = TextButton
 
             buttonlabel.Name = "buttonlabel"
@@ -410,9 +406,9 @@ function library:CreateWindow(text)
                     down = true
                     Value =
                         math.floor(
-                        (((tonumber(maxvalue) - tonumber(minvalue)) / 98) * slidermain.AbsoluteSize.X) +
+                            (((tonumber(maxvalue) - tonumber(minvalue)) / 98) * slidermain.AbsoluteSize.X) +
                             tonumber(minvalue)
-                    ) or 0
+                        ) or 0
                     slidernumber.Text = Value
                     pcall(callback, Value)
                     slidermain:TweenSize(
@@ -424,9 +420,9 @@ function library:CreateWindow(text)
                     while game:GetService("RunService").RenderStepped:wait() and down do
                         Value =
                             math.floor(
-                            (((tonumber(maxvalue) - tonumber(minvalue)) / 98) * slidermain.AbsoluteSize.X) +
+                                (((tonumber(maxvalue) - tonumber(minvalue)) / 98) * slidermain.AbsoluteSize.X) +
                                 tonumber(minvalue)
-                        ) or 0
+                            ) or 0
                         slidernumber.Text = Value
                         pcall(callback, Value)
                         slidermain:TweenSize(
@@ -445,9 +441,9 @@ function library:CreateWindow(text)
                         down = false
                         Value =
                             math.floor(
-                            (((tonumber(maxvalue) - tonumber(minvalue)) / 98) * slidermain.AbsoluteSize.X) +
+                                (((tonumber(maxvalue) - tonumber(minvalue)) / 98) * slidermain.AbsoluteSize.X) +
                                 tonumber(minvalue)
-                        ) or 0
+                            ) or 0
                         slidernumber.Text = Value
                         pcall(callback, Value)
                         slidermain:TweenSize(
