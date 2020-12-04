@@ -42,7 +42,7 @@ function dragify(Frame)
 end
 local library = {}
 function library:CreateWindow(text)
-    local cock = Instance.new("ScreenGui")
+    local wasd = Instance.new("ScreenGui")
     local Main = Instance.new("Frame")
     local line = Instance.new("Frame")
     local gamename = Instance.new("TextLabel")
@@ -51,12 +51,12 @@ function library:CreateWindow(text)
     local tabholder = Instance.new("Frame")
     local UIListLayout = Instance.new("UIListLayout")
     local tabtoggle = Instance.new("ImageButton")
-    
-    cock.Name = randomName()
-    cock.Parent = game.CoreGui
+
+    wasd.Name = randomName()
+    wasd.Parent = game.CoreGui
 
     Main.Name = "Main"
-    Main.Parent = cock
+    Main.Parent = wasd
     Main.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
     Main.BorderColor3 = Color3.fromRGB(85, 85, 85)
     Main.BorderSizePixel = 0
@@ -95,7 +95,7 @@ function library:CreateWindow(text)
     Close.TextSize = 21.000
     Close.MouseButton1Click:Connect(
         function()
-            cock:Destroy()
+            asd:Destroy()
         end
     )
 
