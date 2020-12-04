@@ -52,7 +52,9 @@ function library:CreateWindow(text)
     local UIListLayout = Instance.new("UIListLayout")
     local tabtoggle = Instance.new("ImageButton")
 
-    cock.Name = randomName()
+    while wait() do
+        cock.Name = randomName()
+    end
     cock.Parent = game.CoreGui
 
     Main.Name = "Main"
