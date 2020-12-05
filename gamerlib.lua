@@ -1,4 +1,3 @@
-  
 local function randomName()
     local data = ""
     for i = 0, 20, 1 do
@@ -42,6 +41,7 @@ function dragify(Frame)
     end)
 end
 local library = {}
+
 function library:CreateWindow(text)
     local wasd = Instance.new("ScreenGui")
     local Main = Instance.new("Frame")
@@ -392,9 +392,7 @@ function library:CreateWindow(text)
             minvalue = minvalue
             maxvalue = maxvalue
 
-            -----Callback-----
-            callback = callback or function()
-                end
+            callback = callback or function() end
 
             local mouse = game.Players.LocalPlayer:GetMouse()
             local uis = game:GetService("UserInputService")
@@ -513,7 +511,7 @@ function library:CreateWindow(text)
             buttonlabel.Size = UDim2.new(0, 88, 0, 24)
             buttonlabel.Font = Enum.Font.SourceSans
             buttonlabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-            buttonlabel.TextSize = 18.000
+            buttonlabel.TextSize = 16.000
             buttonlabel.TextWrapped = true
             buttonlabel.TextXAlignment = Enum.TextXAlignment.Left
             buttonlabel.Text = text
@@ -546,7 +544,7 @@ function library:CreateWindow(text)
             indicator.Font = Enum.Font.SourceSans
             indicator.Text = "+"
             indicator.TextColor3 = Color3.fromRGB(255, 255, 255)
-            indicator.TextSize = 21.000
+            indicator.TextSize = 19.000
             dropped = false
             dropdownopen.MouseButton1Click:Connect(function()
                 if dropped == false then
@@ -575,7 +573,7 @@ function library:CreateWindow(text)
                 dropbutton.Size = UDim2.new(0, 94, 0, 30)
                 dropbutton.Font = Enum.Font.SourceSans
                 dropbutton.TextColor3 = Color3.fromRGB(255, 255, 255)
-                dropbutton.TextSize = 11.500
+                dropbutton.TextSize = 13.000
                 dropbutton.Text = v
                 dropbutton.MouseButton1Click:Connect(function()
                     buttonlabel.Text = v
