@@ -41,7 +41,6 @@ function dragify(Frame)
     end)
 end
 local library = {}
-
 function library:CreateWindow(text)
     local wasd = Instance.new("ScreenGui")
     local Main = Instance.new("Frame")
@@ -94,11 +93,9 @@ function library:CreateWindow(text)
     Close.Text = "x"
     Close.TextColor3 = Color3.fromRGB(255, 255, 255)
     Close.TextSize = 21.000
-    Close.MouseButton1Click:Connect(
-        function()
-            wasd:Destroy()
-        end
-    )
+    Close.MouseButton1Click:Connect(function()
+        wasd:Destroy()
+    end)
 
     tabs.Name = "tabs"
     tabs.Parent = Main
@@ -122,17 +119,15 @@ function library:CreateWindow(text)
     tabtoggle.Size = UDim2.new(0, 23, 0, 22)
     tabtoggle.Image = "http://www.roblox.com/asset/?id=5076535498"
     tas = false
-    tabtoggle.MouseButton1Click:Connect(
-        function()
-            if tas == false then
-                tas = true
-                tabholder:TweenSize(UDim2.new(0, 71, 0, 196), "Out", "Sine", 0.2)
-            elseif tas == true then
-                tas = false
-                tabholder:TweenSize(UDim2.new(0, 71, 0, 0), "Out", "Sine", 0.2)
-            end
+    tabtoggle.MouseButton1Click:Connect(function()
+        if tas == false then
+            tas = true
+            tabholder:TweenSize(UDim2.new(0, 71, 0, 196), "Out", "Sine", 0.2)
+        elseif tas == true then
+            tas = false
+            tabholder:TweenSize(UDim2.new(0, 71, 0, 0), "Out", "Sine", 0.2)
         end
-    )
+    end)
 
     open = false
     UIS.InputBegan:Connect(function(key, gp)
@@ -147,7 +142,6 @@ function library:CreateWindow(text)
         end
     end)
     local asd = {}
-
     function asd:CreateTab(title, visible)
         local gaming = Instance.new("Frame")
         local UIGridLayout = Instance.new("UIGridLayout")
@@ -184,20 +178,14 @@ function library:CreateWindow(text)
         tabbutton.Text = ""
         tabbutton.TextColor3 = Color3.fromRGB(0, 0, 0)
         tabbutton.TextSize = 14.000
-        tabbutton.MouseButton1Click:Connect(
-            function()
-                for i, v in next, tabs:GetChildren() do
-                    v.Visible = false
-                end
-                gaming.Visible = true
+        tabbutton.MouseButton1Click:Connect(function()
+            for i, v in next, tabs:GetChildren() do
+                v.Visible = false
             end
-        )
+            gaming.Visible = true
+        end)
 
-        UIGradient.Color =
-            ColorSequence.new {
-                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(45, 45, 45)),
-                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(45, 45, 45))
-            }
+        UIGradient.Color =ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(45, 45, 45)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(45, 45, 45))}
         UIGradient.Parent = tabbutton
 
         tabtext.Name = "tabtext"
@@ -215,8 +203,7 @@ function library:CreateWindow(text)
         local tab = {}
 
         function tab:CreateButton(text, callback)
-            local callback = callback or function()
-                end
+            local callback = callback or function() end
 
             local TextButton = Instance.new("TextButton")
             local UIGradient = Instance.new("UIGradient")
@@ -231,17 +218,11 @@ function library:CreateWindow(text)
             TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
             TextButton.TextSize = 14.000
             TextButton.Name = name or "TextButton"
-            TextButton.MouseButton1Click:Connect(
-                function()
-                    pcall(callback)
-                end
-            )
+            TextButton.MouseButton1Click:Connect(function() 
+                pcall(callback)
+            end)
 
-            UIGradient.Color =
-                ColorSequence.new {
-                    ColorSequenceKeypoint.new(0.00, Color3.fromRGB(45, 45, 45)),
-                    ColorSequenceKeypoint.new(1.00, Color3.fromRGB(45, 45, 45))
-                }
+            UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(45, 45, 45)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(45, 45, 45))}
             UIGradient.Parent = TextButton
 
             buttonlabel.Name = "buttonlabel"
@@ -256,11 +237,8 @@ function library:CreateWindow(text)
             buttonlabel.TextWrapped = true
             buttonlabel.Text = text or "NewButton"
         end
-
         function tab:CreateToggle(text, callback)
-            local switchactions = {}
-            enabled = false
-            callback = callback or function() end
+            callback = callback or function()end
             local toggleholder = Instance.new("Frame")
             local TextLabel = Instance.new("TextLabel")
             local togglebutton = Instance.new("TextButton")
@@ -306,32 +284,18 @@ function library:CreateWindow(text)
 
             UICorner_2.CornerRadius = UDim.new(0.150000006, 0)
             UICorner_2.Parent = pointer
-            function Trigger()
-                enabled = not enabled
-                pointer:TweenPosition(
-                    enabled and UDim2.new(0.5, 0, 0, 0) or UDim2.new(-0.018, 0, 0, 0),
-                    "In",
-                    "Sine",
-                    0.2
-                )
-                pcall(callback, enabled)
-            end
+            local Toggled = false
 
-            togglebutton.MouseButton1Click:Connect(Trigger)
-
-            function switchactions:Set(state)
-                enabled = state
-                pointer:TweenPosition(
-                    enabled and UDim2.new(-0.018, 0, 0, 0) or UDim2.new(0.5, 0, 0, 0),
-                    "In",
-                    "Sine",
-                    0.2
-                )
-                pcall(callback, enabled)
-            end
-            return switchactions
+            togglebutton.MouseButton1Click:Connect(function()
+                Toggled = not Toggled
+                if Toggled then
+                    pointer:TweenPosition(UDim2.new(0.5, 0, 0, 0), "In", "Sine", 0.2)
+                else
+                    pointer:TweenPosition(UDim2.new(-0.018, 0, 0, 0), "Out", "Sine", 0.2)
+                end
+                callback(Toggled)
+            end)
         end
-
         function tab:CreateSlider(text, minvalue, maxvalue, callback)
             local slider = Instance.new("TextLabel")
             local sliderbutton = Instance.new("TextButton")
@@ -399,80 +363,42 @@ function library:CreateWindow(text)
             local Value
             local down = false
 
-            sliderbutton.MouseButton1Down:Connect(
-                function()
-                    down = true
-                    Value =
-                        math.floor(
-                            (((tonumber(maxvalue) - tonumber(minvalue)) / 98) * slidermain.AbsoluteSize.X) +
-                            tonumber(minvalue)
-                        ) or 0
+            sliderbutton.MouseButton1Down:Connect(function()
+                down = true
+                Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 98) * slidermain.AbsoluteSize.X) + tonumber(minvalue)) or 0
+                slidernumber.Text = Value
+                pcall(callback, Value)
+                slidermain:TweenSize(UDim2.new(0, math.clamp(mouse.X - slidermain.AbsolutePosition.X, 0, 98), 0, 9),Enum.EasingDirection.InOut,Enum.EasingStyle.Linear,.07)
+                while game:GetService("RunService").RenderStepped:wait() and down do
+                    Value  = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 98) * slidermain.AbsoluteSize.X) + tonumber(minvalue)) or 0
                     slidernumber.Text = Value
                     pcall(callback, Value)
-                    slidermain:TweenSize(
-                        UDim2.new(0, math.clamp(mouse.X - slidermain.AbsolutePosition.X, 0, 98), 0, 9),
-                        Enum.EasingDirection.InOut,
-                        Enum.EasingStyle.Linear,
-                        .07
-                    )
-                    while game:GetService("RunService").RenderStepped:wait() and down do
-                        Value =
-                            math.floor(
-                                (((tonumber(maxvalue) - tonumber(minvalue)) / 98) * slidermain.AbsoluteSize.X) +
-                                tonumber(minvalue)
-                            ) or 0
-                        slidernumber.Text = Value
-                        pcall(callback, Value)
-                        slidermain:TweenSize(
-                            UDim2.new(0, math.clamp(mouse.X - slidermain.AbsolutePosition.X, 0, 98), 0, 9),
-                            Enum.EasingDirection.InOut,
-                            Enum.EasingStyle.Linear,
-                            .07
-                        )
-                    end
+                    slidermain:TweenSize(UDim2.new(0, math.clamp(mouse.X - slidermain.AbsolutePosition.X, 0, 98), 0, 9), Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, .07)
                 end
-            )
+            end)
 
-            uis.InputEnded:connect(
-                function(key)
-                    if key.UserInputType == Enum.UserInputType.MouseButton1 and down then
-                        down = false
-                        Value =
-                            math.floor(
-                                (((tonumber(maxvalue) - tonumber(minvalue)) / 98) * slidermain.AbsoluteSize.X) +
-                                tonumber(minvalue)
-                            ) or 0
-                        slidernumber.Text = Value
-                        pcall(callback, Value)
-                        slidermain:TweenSize(
-                            UDim2.new(0, math.clamp(mouse.X - slidermain.AbsolutePosition.X, 0, 98), 0, 9),
-                            Enum.EasingDirection.InOut,
-                            Enum.EasingStyle.Linear,
-                            0.1
-                        )
-                    end
+            uis.InputEnded:connect(function(key)
+                if key.UserInputType == Enum.UserInputType.MouseButton1 and down then
+                    down = false
+                    Value =math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 98) * slidermain.AbsoluteSize.X) + tonumber(minvalue)) or 0
+                    slidernumber.Text = Value
+                    pcall(callback, Value)
+                    slidermain:TweenSize(UDim2.new(0, math.clamp(mouse.X - slidermain.AbsolutePosition.X, 0, 98), 0, 9), Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, 0.1)
                 end
-            )
-            local ss = {}
+            end)
+            local terq = {}
 
-            function ss:Set(SliderAmount)
+            function terq:Set(SliderAmount)
                 SliderAmount = tonumber(SliderAmount) or 0
                 SliderAmount = (((SliderAmount >= 0 and SliderAmount <= 100) and SliderAmount) / 100)
-                TweenService:Create(
-                    slidermain,
-                    TweenInfo.new(0.1, Enum.EasingStyle.Quart, Enum.EasingDirection.Out),
-                    {Size = UDim2.new(SliderAmount or 0, 0, 0, 9)}
-                ):Play()
+                TweenService:Create(slidermain, TweenInfo.new(0.1, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(SliderAmount or 0, 0, 0, 9)}):Play()
                 local p = math.floor((SliderAmount or 0) * 100)
-
                 local difference = maxvalue - minvalue
-
                 local Value = math.floor(((difference / 100) * p) + minvalue)
-
                 slidernumber.Text = Value
                 pcall(callback, Value)
             end
-            return ss
+            return terq
         end
         function tab:CreateDropdown(text, list, callback)
             local DropYSize = 0
@@ -511,7 +437,7 @@ function library:CreateWindow(text)
             buttonlabel.Size = UDim2.new(0, 88, 0, 24)
             buttonlabel.Font = Enum.Font.SourceSans
             buttonlabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-            buttonlabel.TextSize = 16.000
+            buttonlabel.TextSize = 18.000
             buttonlabel.TextWrapped = true
             buttonlabel.TextXAlignment = Enum.TextXAlignment.Left
             buttonlabel.Text = text
@@ -544,7 +470,7 @@ function library:CreateWindow(text)
             indicator.Font = Enum.Font.SourceSans
             indicator.Text = "+"
             indicator.TextColor3 = Color3.fromRGB(255, 255, 255)
-            indicator.TextSize = 19.000
+            indicator.TextSize = 21.000
             dropped = false
             dropdownopen.MouseButton1Click:Connect(function()
                 if dropped == false then
@@ -573,7 +499,7 @@ function library:CreateWindow(text)
                 dropbutton.Size = UDim2.new(0, 94, 0, 30)
                 dropbutton.Font = Enum.Font.SourceSans
                 dropbutton.TextColor3 = Color3.fromRGB(255, 255, 255)
-                dropbutton.TextSize = 13.000
+                dropbutton.TextSize = 14.000
                 dropbutton.Text = v
                 dropbutton.MouseButton1Click:Connect(function()
                     buttonlabel.Text = v
