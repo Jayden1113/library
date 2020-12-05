@@ -1,3 +1,4 @@
+  
 local function randomName()
     local data = ""
     for i = 0, 20, 1 do
@@ -259,8 +260,7 @@ function library:CreateWindow(text)
         function tab:CreateToggle(text, callback)
             local switchactions = {}
             enabled = false
-            callback = callback or function()
-                end
+            callback = callback or function() end
             local toggleholder = Instance.new("Frame")
             local TextLabel = Instance.new("TextLabel")
             local togglebutton = Instance.new("TextButton")
@@ -322,12 +322,12 @@ function library:CreateWindow(text)
             function switchactions:Set(state)
                 enabled = state
                 pointer:TweenPosition(
-                    enabled and UDim2.new(-0.018, 0, 0, 0 or UDim2.new(0.5, 0, 0, 0),
+                    enabled and UDim2.new(-0.018, 0, 0, 0) or UDim2.new(0.5, 0, 0, 0),
                     "In",
                     "Sine",
                     0.2
                 )
-                pcal(callback, enabled)
+                pcall(callback, enabled)
             end
             return switchactions
         end
@@ -575,7 +575,7 @@ function library:CreateWindow(text)
                 dropbutton.Size = UDim2.new(0, 94, 0, 30)
                 dropbutton.Font = Enum.Font.SourceSans
                 dropbutton.TextColor3 = Color3.fromRGB(255, 255, 255)
-                dropbutton.TextSize = 14.000
+                dropbutton.TextSize = 11.500
                 dropbutton.Text = v
                 dropbutton.MouseButton1Click:Connect(function()
                     buttonlabel.Text = v
