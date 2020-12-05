@@ -575,7 +575,7 @@ function library:CreateWindow(text)
                 dropbutton.Size = UDim2.new(0, 94, 0, 30)
                 dropbutton.Font = Enum.Font.SourceSans
                 dropbutton.TextColor3 = Color3.fromRGB(255, 255, 255)
-                dropbutton.TextSize = 14.000
+                dropbutton.TextSize = 12.000
                 dropbutton.Text = v
                 dropbutton.MouseButton1Click:Connect(function()
                     buttonlabel.Text = v
