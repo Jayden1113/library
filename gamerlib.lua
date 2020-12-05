@@ -546,7 +546,7 @@ function library:CreateWindow(text)
             indicator.Font = Enum.Font.SourceSans
             indicator.Text = "+"
             indicator.TextColor3 = Color3.fromRGB(255, 255, 255)
-            indicator.TextSize = 21.000
+            indicator.TextSize = 20.000
             dropped = false
             dropdownopen.MouseButton1Click:Connect(function()
                 if dropped == false then
@@ -575,7 +575,7 @@ function library:CreateWindow(text)
                 dropbutton.Size = UDim2.new(0, 94, 0, 30)
                 dropbutton.Font = Enum.Font.SourceSans
                 dropbutton.TextColor3 = Color3.fromRGB(255, 255, 255)
-                dropbutton.TextSize = 12.000
+                dropbutton.TextSize = 11.000
                 dropbutton.Text = v
                 dropbutton.MouseButton1Click:Connect(function()
                     buttonlabel.Text = v
