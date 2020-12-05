@@ -315,7 +315,7 @@ function library:CreateWindow(text)
                         "Sine",
                         0.2
                     )
-                    enabled = not enabled 
+                    enabled = not toggled 
                 else
                     pointer:TweenPosition(
                         enabled and UDim2.new(-0.018, 0, 0, 0),
