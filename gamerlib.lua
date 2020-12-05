@@ -306,29 +306,30 @@ function library:CreateWindow(text)
 
             UICorner_2.CornerRadius = UDim.new(0.150000006, 0)
             UICorner_2.Parent = pointer
+            function Trigger()
+                enabled = not enabled
+                pointer:TweenPosition(
+                    enabled and UDim2.new(0.5, 0, 0, 0) or UDim2.new(-0.018, 0, 0, 0),
+                    "In",
+                    "Sine",
+                    0.2
+                )
+                pcall(callback, enabled)
+            end
 
-            togglebutton.MouseButton1Click:Connect(function()
-                if enabled == false then
-                    pointer:TweenPosition(
-                        enabled and UDim2.new(0.5, 0, 0, 0),
-                        "In",
-                        "Sine",
-                        0.2
-                    )
-                    enabled = not toggled 
-                else
-                    pointer:TweenPosition(
-                        enabled and UDim2.new(-0.018, 0, 0, 0),
-                        "In",
-                        "Sine",
-                        0.2
-                    )
-                    enabled = not enabled
-                end
-                callback(enabled)
-            end)
+            togglebutton.MouseButton1Click:Connect(Trigger)
 
-            
+            function switchactions:Set(state)
+                enabled = state
+                pointer:TweenPosition(
+                    enabled and UDim2.new(0.5, 0, 0, 0) or UDim2.new(-0.018, 0, 0, 0),
+                    "In",
+                    "Sine",
+                    0.2
+                )
+                pcall(callback, enabled)
+            end
+            return switchactions
         end
 
         function tab:CreateSlider(text, minvalue, maxvalue, callback)
