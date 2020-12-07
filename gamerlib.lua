@@ -1,10 +1,4 @@
-local function randomName()
-    local data = ""
-    for i = 0, 20, 1 do
-        data = data .. tostring(string.char(math.ceil(math.random() * 233)))
-    end
-    return data
-end
+local function randomName() local data = "" for i = 0, 20, 1 do data = data .. tostring(string.char(math.ceil(math.random() * 233))) end return data end
 local UIS = game:GetService("UserInputService")
 function dragify(Frame)
     dragToggle = nil
@@ -93,9 +87,7 @@ function library:CreateWindow(text)
     Close.Text = "x"
     Close.TextColor3 = Color3.fromRGB(255, 255, 255)
     Close.TextSize = 21.000
-    Close.MouseButton1Click:Connect(function()
-        wasd:Destroy()
-    end)
+    Close.MouseButton1Click:Connect(function() wasd:Destroy() end)
 
     tabs.Name = "tabs"
     tabs.Parent = Main
@@ -119,15 +111,7 @@ function library:CreateWindow(text)
     tabtoggle.Size = UDim2.new(0, 23, 0, 22)
     tabtoggle.Image = "http://www.roblox.com/asset/?id=5076535498"
     tas = false
-    tabtoggle.MouseButton1Click:Connect(function()
-        if tas == false then
-            tas = true
-            tabholder:TweenSize(UDim2.new(0, 71, 0, 196), "Out", "Sine", 0.2)
-        elseif tas == true then
-            tas = false
-            tabholder:TweenSize(UDim2.new(0, 71, 0, 0), "Out", "Sine", 0.2)
-        end
-    end)
+    tabtoggle.MouseButton1Click:Connect(function() if tas == false then tas = true tabholder:TweenSize(UDim2.new(0, 71, 0, 196), "Out", "Sine", 0.2) elseif tas == true then tas = false tabholder:TweenSize(UDim2.new(0, 71, 0, 0), "Out", "Sine", 0.2) end end)
 
     open = false
     UIS.InputBegan:Connect(function(key, gp)
@@ -178,12 +162,7 @@ function library:CreateWindow(text)
         tabbutton.Text = ""
         tabbutton.TextColor3 = Color3.fromRGB(0, 0, 0)
         tabbutton.TextSize = 14.000
-        tabbutton.MouseButton1Click:Connect(function()
-            for i, v in next, tabs:GetChildren() do
-                v.Visible = false
-            end
-            gaming.Visible = true
-        end)
+        tabbutton.MouseButton1Click:Connect(function() for i, v in next, tabs:GetChildren() do v.Visible = false end gaming.Visible = true end)
 
         UIGradient.Color =ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(45, 45, 45)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(45, 45, 45))}
         UIGradient.Parent = tabbutton
@@ -204,7 +183,6 @@ function library:CreateWindow(text)
 
         function tab:CreateButton(text, callback)
             local callback = callback or function() end
-
             local TextButton = Instance.new("TextButton")
             local UIGradient = Instance.new("UIGradient")
             local buttonlabel = Instance.new("TextLabel")
@@ -218,9 +196,7 @@ function library:CreateWindow(text)
             TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
             TextButton.TextSize = 14.000
             TextButton.Name = name or "TextButton"
-            TextButton.MouseButton1Click:Connect(function() 
-                pcall(callback)
-            end)
+            TextButton.MouseButton1Click:Connect(function() pcall(callback) end)
 
             UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(45, 45, 45)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(45, 45, 45))}
             UIGradient.Parent = TextButton
@@ -285,7 +261,6 @@ function library:CreateWindow(text)
             UICorner_2.CornerRadius = UDim.new(0.150000006, 0)
             UICorner_2.Parent = pointer
             local Toggled = false
-
             togglebutton.MouseButton1Click:Connect(function()
                 Toggled = not Toggled
                 if Toggled then
@@ -355,9 +330,7 @@ function library:CreateWindow(text)
             TextLabel.TextXAlignment = Enum.TextXAlignment.Left
             minvalue = minvalue
             maxvalue = maxvalue
-
             callback = callback or function() end
-
             local mouse = game.Players.LocalPlayer:GetMouse()
             local uis = game:GetService("UserInputService")
             local Value
@@ -403,9 +376,7 @@ function library:CreateWindow(text)
         function tab:CreateDropdown(text, list, callback)
             local DropYSize = 0
             list = list or {}
-
             callback = callback or function() end
-
             local dropdownopen = Instance.new("TextButton")
             local UIGradient = Instance.new("UIGradient")
             local buttonlabel = Instance.new("TextLabel")
@@ -457,7 +428,6 @@ function library:CreateWindow(text)
             UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
             UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
             UIListLayout.Padding = UDim.new(0, 3)
-
             UIPadding.Parent = dropdown
             UIPadding.PaddingTop = UDim.new(0, 2)
 
@@ -490,7 +460,6 @@ function library:CreateWindow(text)
             for i,v in next, list do
                 local dropbutton = Instance.new("TextButton")
                 local UICorner = Instance.new("UICorner")
-
                 dropbutton.Name = "dropbutton"
                 dropbutton.Parent = dropdown
                 dropbutton.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
@@ -510,10 +479,8 @@ function library:CreateWindow(text)
                     dropdown.ClipsDescendants = true
                     gaming.ClipsDescendants = true
                 end)
-
                 UICorner.CornerRadius = UDim.new(0, 3)
                 UICorner.Parent = dropbutton
-
                 DropYSize = DropYSize + 33.5
             end
         end
