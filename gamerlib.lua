@@ -230,7 +230,7 @@ function library:CreateWindow(text)
             TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             TextLabel.BackgroundTransparency = 1.000
             TextLabel.Position = UDim2.new(-0.0476190485, 0, 0.095238097, 0)
-            TextLabel.Size = UDim2.new(0, 101, 0, 33)
+            TextLabel.Size = UDim2.new(0, 72, 0, 33)
             TextLabel.Font = Enum.Font.SourceSans
             TextLabel.Text = text
             TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
