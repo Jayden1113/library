@@ -17,9 +17,7 @@ function dragify(Frame)
             dragStart = input.Position
             startPos = Frame.Position
             input.Changed:Connect(function()
-                if input.UserInputState == Enum.UserInputState.End then
-                    dragToggle = false
-                end
+                if input.UserInputState == Enum.UserInputState.End then dragToggle = false end
             end)
         end
     end)
@@ -232,11 +230,11 @@ function library:CreateWindow(text)
             TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             TextLabel.BackgroundTransparency = 1.000
             TextLabel.Position = UDim2.new(-0.0476190485, 0, 0.095238097, 0)
-            TextLabel.Size = UDim2.new(0, 61, 0, 33)
+            TextLabel.Size = UDim2.new(0, 101, 0, 33)
             TextLabel.Font = Enum.Font.SourceSans
+            TextLabel.Text = "NewToggle" or text
             TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
             TextLabel.TextSize = 18.000
-            TextLabel.Text = text
 
             togglebutton.Name = "togglebutton"
             togglebutton.Parent = toggleholder
