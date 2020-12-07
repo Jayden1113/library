@@ -232,7 +232,7 @@ function library:CreateWindow(text)
             TextLabel.Position = UDim2.new(-0.0476190485, 0, 0.095238097, 0)
             TextLabel.Size = UDim2.new(0, 101, 0, 33)
             TextLabel.Font = Enum.Font.SourceSans
-            TextLabel.Text = "NewToggle" or text
+            TextLabel.Text = text or "NewToggle"
             TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
             TextLabel.TextSize = 18.000
 
