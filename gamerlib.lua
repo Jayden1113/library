@@ -326,6 +326,7 @@ function library:CreateWindow(text)
             TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
             TextLabel.TextSize = 14.000
             TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+            TextLabel.Text = text
             minvalue = minvalue
             maxvalue = maxvalue
             callback = callback or function() end
