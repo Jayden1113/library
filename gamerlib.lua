@@ -313,7 +313,7 @@ function library:CreateWindow(text)
             slidernumber.Position = UDim2.new(0.780952394, 0, 0, 0)
             slidernumber.Size = UDim2.new(0, 23, 0, 21)
             slidernumber.Font = Enum.Font.SourceSans
-            slidernumber.Text = "0"
+            slidernumber.Text = minvalue
             slidernumber.TextColor3 = Color3.fromRGB(255, 255, 255)
             slidernumber.TextSize = 18.000
 
