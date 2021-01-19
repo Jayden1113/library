@@ -108,6 +108,9 @@ function library:CreateWindow(text)
 	Close.Text = "x"
 	Close.TextColor3 = Color3.fromRGB(255, 255, 255)
 	Close.TextSize = 21.000
+	Close.MouseButton1Down:Connect(function()
+		sg:Destroy()		
+	end)
 	tabs.Name = "tabs"
 	tabs.Parent = Main
 	UICorner.CornerRadius = UDim.new(0.0149999997, 0)
