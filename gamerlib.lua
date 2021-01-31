@@ -447,7 +447,7 @@ function library:CreateWindow(text)
 			dropped = false
 			dropdownopen.MouseButton1Click:Connect(function()
 				if dropped == false then
-					dropped = true
+					dropped = not dropped
 					indicator.Text = "-"
 					dropdown:TweenSize(UDim2.new(0, 100, 0, DropYSize), "Out", "Sine", 0.1)
 					dropdown.ClipsDescendants = false
