@@ -384,6 +384,7 @@ function library:CreateWindow(text)
 			list = list or {}
 			callback = callback or function()
 			end
+			local dropped = false
 			local dropdownopen = Instance.new("TextButton")
 			local UIGradient = Instance.new("UIGradient")
 			local buttonlabel = Instance.new("TextLabel")
@@ -444,16 +445,15 @@ function library:CreateWindow(text)
 			indicator.Text = "+"
 			indicator.TextColor3 = Color3.fromRGB(255, 255, 255)
 			indicator.TextSize = 21.000
-			dropped = false
 			dropdownopen.MouseButton1Click:Connect(function()
 				if dropped == false then
-					dropped = not dropped
+				    dropped = not dropped
 					indicator.Text = "-"
 					dropdown:TweenSize(UDim2.new(0, 100, 0, DropYSize), "Out", "Sine", 0.1)
 					dropdown.ClipsDescendants = false
 					gaming.ClipsDescendants = false
 				else
-					dropped = false
+				    dropped = not dropped
 					indicator.Text = "+"
 					dropdown:TweenSize(UDim2.new(0, 100, 0, 0), "Out", "Sine", 0.1)
 					dropdown.ClipsDescendants = true
@@ -476,8 +476,8 @@ function library:CreateWindow(text)
 				dropbutton.MouseButton1Click:Connect(function()
 					buttonlabel.Text = v
 					callback(v)
-					dropped = false
 					indicator.Text = "+"
+					dropped = false
 					dropdown:TweenSize(UDim2.new(0, 100, 0, 0), "Out", "Sine", 0.1)
 					dropdown.ClipsDescendants = true
 					gaming.ClipsDescendants = true
