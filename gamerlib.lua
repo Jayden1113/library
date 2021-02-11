@@ -1,10 +1,3 @@
-local function randomName()
-	local data = ""
-	for i = 0, 20, 1 do
-		data = data .. tostring(string.char(math.ceil(math.random() * 233)))
-	end
-	return data
-end
 local UIS = game:GetService("UserInputService")
 function dragify(Frame)
 	dragToggle = nil
@@ -54,7 +47,7 @@ function library:CreateWindow(text)
 	local Close = Instance.new("TextButton")
 	local tabs = Instance.new("Folder")
 	local UICorner = Instance.new("UICorner")
-	sg.Name = randomName()
+	sg.Name = "sg"
 	sg.Parent = game.CoreGui
 	sg.DisplayOrder = 1
 	sg.ResetOnSpawn = false
