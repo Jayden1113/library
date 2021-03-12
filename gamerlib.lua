@@ -243,7 +243,7 @@ function library:CreateWindow(text)
 			TextLabel.Font = Enum.Font.SourceSans
 			TextLabel.Text = text
 			TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-			TextLabel.TextSize = 18.000
+			TextLabel.TextSize = 16
 			togglebutton.Name = "togglebutton"
 			togglebutton.Parent = toggleholder
 			togglebutton.BackgroundColor3 = Color3.fromRGB(75, 75, 75)
