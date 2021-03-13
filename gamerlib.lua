@@ -453,7 +453,7 @@ function library:CreateWindow(text)
 					gaming.ClipsDescendants = true
 				end
 			end)
-			for i, v in next, list do
+			for i, v in next, list or {} do
 				local dropbutton = Instance.new("TextButton")
 				local UICorner = Instance.new("UICorner")
 				dropbutton.Name = "dropbutton"
