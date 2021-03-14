@@ -373,115 +373,128 @@ function library:CreateWindow(text)
 			return terq
 		end
 		function tab:CreateDropdown(text, list, callback)
-			local DropYSize = 0
 			list = list or {}
 			callback = callback or function()
 			end
 			local dropped = false
 			local dropdownopen = Instance.new("TextButton")
-			local UIGradient = Instance.new("UIGradient")
-			local buttonlabel = Instance.new("TextLabel")
-			local dropdown = Instance.new("Frame")
-			local UICorner = Instance.new("UICorner")
-			local UIListLayout = Instance.new("UIListLayout")
-			local UIPadding = Instance.new("UIPadding")
-			local indicator = Instance.new("TextLabel")
-			dropdownopen.Name = "dropdownopen"
-			dropdownopen.Parent = gaming
-			dropdownopen.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			dropdownopen.Position = UDim2.new(-0.00903614424, 0, 0.0612244904, 0)
-			dropdownopen.Size = UDim2.new(0, 105, 0, 40)
-			dropdownopen.Style = Enum.ButtonStyle.RobloxRoundDropdownButton
-			dropdownopen.Font = Enum.Font.SourceSans
-			dropdownopen.Text = ""
-			dropdownopen.TextColor3 = Color3.fromRGB(0, 0, 0)
-			dropdownopen.TextSize = 14.000
-			UIGradient.Color = ColorSequence.new{
-				ColorSequenceKeypoint.new(0.00, Color3.fromRGB(45, 45, 45)),
-				ColorSequenceKeypoint.new(1.00, Color3.fromRGB(45, 45, 45))
-			}
-			UIGradient.Parent = dropdownopen
-			buttonlabel.Name = "buttonlabel"
-			buttonlabel.Parent = dropdownopen
-			buttonlabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			buttonlabel.BackgroundTransparency = 1.000
-			buttonlabel.Position = UDim2.new(-0.00680267997, 0, -0.132652789, 0)
-			buttonlabel.Size = UDim2.new(0, 88, 0, 24)
-			buttonlabel.Font = Enum.Font.SourceSans
-			buttonlabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-			buttonlabel.TextSize = 18.000
-			buttonlabel.TextWrapped = true
-			buttonlabel.TextXAlignment = Enum.TextXAlignment.Left
-			buttonlabel.Text = text
-			dropdown.Name = "dropdown"
-			dropdown.Parent = dropdownopen
-			dropdown.BackgroundColor3 = Color3.fromRGB(76, 76, 76)
-			dropdown.BorderSizePixel = 0
-			dropdown.ClipsDescendants = true
-			dropdown.Position = UDim2.new(-0.118623868, 0, 1.67161775, 0)
-			dropdown.Size = UDim2.new(0, 100, 0, 0)
-			UICorner.CornerRadius = UDim.new(0, 2)
-			UICorner.Parent = dropdown
-			UIListLayout.Parent = dropdown
-			UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
-			UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-			UIListLayout.Padding = UDim.new(0, 3)
-			UIPadding.Parent = dropdown
-			UIPadding.PaddingTop = UDim.new(0, 2)
-			indicator.Name = "indicator"
-			indicator.Parent = dropdownopen
-			indicator.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			indicator.BackgroundTransparency = 1.000
-			indicator.Position = UDim2.new(0.497959077, 0, 0.0748298168, 0)
-			indicator.Size = UDim2.new(0, 68, 0, 16)
-			indicator.Font = Enum.Font.SourceSans
-			indicator.Text = "+"
-			indicator.TextColor3 = Color3.fromRGB(255, 255, 255)
-			indicator.TextSize = 21.000
+            local UIGradient = Instance.new("UIGradient")
+            local buttonlabel = Instance.new("TextLabel")
+            local dropdown = Instance.new("Frame")
+            local UICorner = Instance.new("UICorner")
+            local UIPadding = Instance.new("UIPadding")
+            local ScrollingFrame = Instance.new("ScrollingFrame")
+            local UIListLayout = Instance.new("UIListLayout")
+            local indicator = Instance.new("TextLabel")
+            
+            dropdownopen.Name = "dropdownopen"
+            dropdownopen.Parent = gaming
+            dropdownopen.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            dropdownopen.Position = UDim2.new(-0.00903614424, 0, 0.0612244904, 0)
+            dropdownopen.Size = UDim2.new(0, 105, 0, 40)
+            dropdownopen.Style = Enum.ButtonStyle.RobloxRoundDropdownButton
+            dropdownopen.Font = Enum.Font.SourceSans
+            dropdownopen.Text = ''
+            dropdownopen.TextColor3 = Color3.fromRGB(0, 0, 0)
+            dropdownopen.TextSize = 14.000
+            
+            UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(45, 45, 45)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(45, 45, 45))}
+            UIGradient.Parent = dropdownopen
+            
+            buttonlabel.Name = "buttonlabel"
+            buttonlabel.Parent = dropdownopen
+            buttonlabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            buttonlabel.BackgroundTransparency = 1.000
+            buttonlabel.Position = UDim2.new(-0.00680267997, 0, -0.132652789, 0)
+            buttonlabel.Size = UDim2.new(0, 88, 0, 24)
+            buttonlabel.Font = Enum.Font.SourceSans
+            buttonlabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+            buttonlabel.TextSize = 18.000
+            buttonlabel.TextWrapped = true
+            buttonlabel.TextXAlignment = Enum.TextXAlignment.Left
+            buttonlabel.Text = text
+            
+            dropdown.Name = "dropdown"
+            dropdown.Parent = dropdownopen
+            dropdown.BackgroundColor3 = Color3.fromRGB(76, 76, 76)
+            dropdown.BorderSizePixel = 0
+            dropdown.ClipsDescendants = true
+            dropdown.Position = UDim2.new(-0.118623868, 0, 1.67161775, 0)
+            dropdown.Size = UDim2.new(0, 100, 0, 0)
+            
+            UICorner.CornerRadius = UDim.new(0, 2)
+            UICorner.Parent = dropdown
+            
+            UIPadding.Parent = dropdown
+            UIPadding.PaddingTop = UDim.new(0, 2)
+            
+            ScrollingFrame.Parent = dropdown
+            ScrollingFrame.Active = false
+            ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            ScrollingFrame.BackgroundTransparency = 2.000
+            ScrollingFrame.BorderColor3 = Color3.fromRGB(27, 42, 53)
+            ScrollingFrame.ClipsDescendants = false
+            ScrollingFrame.Size = UDim2.new(0, 100, 0, 103)
+            ScrollingFrame.ScrollBarThickness = 3
+            
+
+            
+            UIListLayout.Parent = ScrollingFrame
+            UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+            UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+            UIListLayout.Padding = UDim.new(0, 4)
+            
+            indicator.Name = "indicator"
+            indicator.Parent = dropdownopen
+            indicator.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            indicator.BackgroundTransparency = 1.000
+            indicator.Position = UDim2.new(0.497959077, 0, 0.0748298168, 0)
+            indicator.Size = UDim2.new(0, 68, 0, 16)
+            indicator.Font = Enum.Font.SourceSans
+            indicator.Text = "+"
+            indicator.TextColor3 = Color3.fromRGB(255, 255, 255)
+            indicator.TextSize = 21.000
 			dropdownopen.MouseButton1Click:Connect(function()
 				if dropped == false then
 				    dropped = not dropped
 					indicator.Text = "-"
-					dropdown:TweenSize(UDim2.new(0, 100, 0, DropYSize), "Out", "Sine", 0.1)
-					dropdown.ClipsDescendants = false
-					gaming.ClipsDescendants = false
+					dropdown:TweenSize(UDim2.new(0, 100, 0, 103), "Out", "Sine", 0.1)
+					ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, UIListLayout.AbsoluteContentSize.Y+5)
 				else
 				    dropped = not dropped
 					indicator.Text = "+"
 					dropdown:TweenSize(UDim2.new(0, 100, 0, 0), "Out", "Sine", 0.1)
-					dropdown.ClipsDescendants = true
-					gaming.ClipsDescendants = true
+					ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, UIListLayout.AbsoluteContentSize.Y+5)
 				end
 			end)
 			for i, v in next, list or {} do
-				local dropbutton = Instance.new("TextButton")
-				local UICorner = Instance.new("UICorner")
-				dropbutton.Name = "dropbutton"
-				dropbutton.Parent = dropdown
-				dropbutton.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-				dropbutton.BorderSizePixel = 0
-				dropbutton.Position = UDim2.new(0.0299999993, 0, 0.0199999996, 0)
-				dropbutton.Size = UDim2.new(0, 94, 0, 30)
-				dropbutton.Font = Enum.Font.SourceSans
-				dropbutton.TextColor3 = Color3.fromRGB(255, 255, 255)
-				dropbutton.TextSize = 14.000
-				dropbutton.Text = v
+                local dropbutton = Instance.new("TextButton")
+                local UICorner = Instance.new("UICorner")
+                
+                
+                dropbutton.Name = "dropbutton"
+                dropbutton.Parent = ScrollingFrame
+                dropbutton.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+                dropbutton.BorderSizePixel = 0
+                dropbutton.Position = UDim2.new(0.0299999993, 0, 0.0199999996, 0)
+                dropbutton.Size = UDim2.new(0, 90, 0, 30)
+                dropbutton.Font = Enum.Font.SourceSans
+                dropbutton.TextColor3 = Color3.fromRGB(255, 255, 255)
+                dropbutton.TextSize = 14.000
+                dropbutton.Text = v
+                
+                UICorner.CornerRadius = UDim.new(0, 3)
+                UICorner.Parent = dropbutton
 				dropbutton.MouseButton1Click:Connect(function()
 					buttonlabel.Text = v
 					callback(v)
 					indicator.Text = "+"
 					dropped = false
 					dropdown:TweenSize(UDim2.new(0, 100, 0, 0), "Out", "Sine", 0.1)
-					dropdown.ClipsDescendants = true
-					gaming.ClipsDescendants = true
 				end)
-				UICorner.CornerRadius = UDim.new(0, 3)
-				UICorner.Parent = dropbutton
-				DropYSize = DropYSize + 33.5
 			end
 		end
 		return tab
 	end
 	return asd
 end
-return library
