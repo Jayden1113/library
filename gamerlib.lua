@@ -498,3 +498,4 @@ function library:CreateWindow(text)
 	end
 	return asd
 end
+return library
