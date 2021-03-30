@@ -373,7 +373,7 @@ function library:CreateWindow(text)
 			return terq
 		end
 		function tab:CreateDropdown(text, list, callback)
-			list = list or {}
+			local list = list or {}
 			callback = callback or function()
 			end
 			local dropped = false
