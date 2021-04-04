@@ -374,8 +374,7 @@ function library:CreateWindow(text)
 		end
 		function tab:CreateDropdown(text, list, callback)
 			local list = list or {}
-			callback = callback or function()
-			end
+			local callback = callback or function() end
 			local dropped = false
 			local dropdownopen = Instance.new("TextButton")
             local UIGradient = Instance.new("UIGradient")
@@ -467,10 +466,9 @@ function library:CreateWindow(text)
 					ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, UIListLayout.AbsoluteContentSize.Y+5)
 				end
 			end)
-			for i, v in next, list or {} do
+			for i,v in pairs(list or {}) do
                 local dropbutton = Instance.new("TextButton")
                 local UICorner = Instance.new("UICorner")
-                
                 
                 dropbutton.Name = "dropbutton"
                 dropbutton.Parent = ScrollingFrame
