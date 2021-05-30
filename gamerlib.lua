@@ -492,6 +492,39 @@ function library:CreateWindow(text)
 				end)
 			end
 		end
+		
+	    function tab:CreateTextbox(text, callback)
+	        callback = callback or function() end
+	        local BoxLabel = Instance.new("TextLabel")
+            local TextBox = Instance.new("TextBox")
+            
+            BoxLabel.Name = "BoxLabel"
+            BoxLabel.Parent = gaming
+            BoxLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            BoxLabel.BackgroundTransparency = 1.000
+            BoxLabel.Position = UDim2.new(0.340361446, 0, 0.0306122452, 0)
+            BoxLabel.Size = UDim2.new(0, 105, 0, 33)
+            BoxLabel.ZIndex = 5
+            BoxLabel.Font = Enum.Font.SourceSans
+            BoxLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+            BoxLabel.TextSize = 16.000
+            BoxLabel.TextYAlignment = Enum.TextYAlignment.Top
+            BoxLabel.Text = text
+            
+            TextBox.Parent = BoxLabel
+            TextBox.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+            TextBox.BorderColor3 = Color3.fromRGB(255, 255, 255)
+            TextBox.Position = UDim2.new(0.0571428575, 0, 0, 0)
+            TextBox.Size = UDim2.new(0, 94, 0, 33)
+            TextBox.Font = Enum.Font.SourceSans
+            TextBox.Text = ""
+            TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+            TextBox.TextSize = 17.000
+            TextBox.TextYAlignment = Enum.TextYAlignment.Bottom
+            TextBox.FocusLost:connect(function(e)
+                callback(TextBox.Text,e)
+            end)
+	    end
 		return tab
 	end
 	return asd
