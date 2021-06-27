@@ -420,6 +420,7 @@ function library:CreateWindow(text)
             dropdown.ClipsDescendants = true
             dropdown.Position = UDim2.new(-0.118623868, 0, 1.67161775, 0)
             dropdown.Size = UDim2.new(0, 100, 0, 0)
+	    dropdown.ZIndex = 1000
             
             UICorner.CornerRadius = UDim.new(0, 2)
             UICorner.Parent = dropdown
